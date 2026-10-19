@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="Compare ofertas de hardware para PC em um só lugar.">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <title>Hardware Radar — Comparador de preços</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1120;--panel:#131d30;--panel2:#18243a;--text:#edf3ff;--muted:#9aabc5;--line:#293750;--accent:#66e3b4;--accent2:#9ab8ff;--warn:#ffd58a}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172741 0,#0b1120 55%);color:var(--text);font:16px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+    .wrap{width:min(1080px,100%);margin:auto;padding:22px 16px 48px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}
+    .brand{display:flex;align-items:center;gap:12px}.logo{width:44px;height:44px;border-radius:14px;background:var(--accent);color:#07131a;display:grid;place-items:center;font-size:24px;font-weight:900}
+    h1{font-size:clamp(24px,5vw,36px);line-height:1.1;margin:0}.sub{color:var(--muted);margin:6px 0 0}.pill{border:1px solid #2e6658;color:var(--accent);border-radius:999px;padding:6px 10px;font-size:12px;white-space:nowrap}
+    .hero{background:linear-gradient(135deg,#172b43,#132035);border:1px solid var(--line);border-radius:22px;padding:22px;margin-bottom:18px}.hero h2{margin:0 0 6px;font-size:23px}.hero p{color:var(--muted);margin:0}
+    .notice{margin:16px 0;background:#332b1b;border:1px solid #6b542d;color:#ffe1a7;border-radius:12px;padding:12px 14px;font-size:13px}
+    .filters{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px;background:var(--panel);padding:16px;border:1px solid var(--line);border-radius:18px;margin-bottom:18px}
+    label{display:block;color:var(--muted);font-size:12px;margin:0 0 7px}input,select{width:100%;min-height:44px;border-radius:10px;border:1px solid #35445f;background:#0e1727;color:var(--text);padding:10px 12px;font:inherit}
+    .rowline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:20px 2px 12px}.rowline h2{font-size:19px;margin:0}.count{color:var(--muted);font-size:13px}
+    .products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px;min-width:0}
+    .producttop{display:flex;gap:12px;align-items:flex-start}.chipicon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--panel2);font-size:24px;flex-shrink:0}
+    .name{font-weight:700;font-size:16px;overflow-wrap:anywhere}.category{color:var(--muted);font-size:12px;margin-top:4px}.storeline{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:13px}
+    .price{font-size:25px;font-weight:800;letter-spacing:-.5px}.price small{font-size:12px;font-weight:500;color:var(--muted);letter-spacing:0}.meta{color:var(--muted);font-size:12px}
+    .actions{display:flex;gap:8px;margin-top:auto}.btn{border:0;border-radius:10px;min-height:42px;padding:10px 13px;font:inherit;font-weight:700;cursor:pointer;text-align:center}.primary{background:var(--accent);color:#062019;flex:1}.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--text)}
+    .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:36px 16px;border:1px dashed var(--line);border-radius:16px}
+    .footer{color:var(--muted);font-size:12px;text-align:center;margin-top:28px}.how{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px}.how h3{margin:0 0 6px}.how p{margin:0;color:var(--muted);font-size:14px}
+    @media(max-width:760px){.filters{grid-template-columns:1fr 1fr}.searchfield{grid-column:1/-1}.products{grid-template-columns:1fr}.top{align-items:flex-start}.pill{font-size:11px}}
+    @media(max-width:420px){.wrap{padding:16px 12px 36px}.filters{grid-template-columns:1fr}.searchfield{grid-column:auto}.hero{padding:18px}.top{gap:8px}.pill{white-space:normal;text-align:center;max-width:115px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand"><div class="logo">⌁</div><div><h1>Hardware Radar</h1><p class="sub">Encontre o preço que faz sentido.</p></div></div>
+      <span class="pill">PROTÓTIPO GRATUITO</span>
+    </header>
+    <section class="hero">
+      <h2>Compare hardware sem abrir dez abas.</h2>
+      <p>Pesquise componentes, limite o preço e ordene as ofertas. Esta primeira versão já tem filtros funcionais; a conexão com preços reais vem na próxima etapa.</p>
+    </section>
+    <div class="notice"><strong>Dados de demonstração:</strong> os produtos e valores abaixo são fictícios, apenas para testar a ferramenta. Não são ofertas atuais nem links de compra.</div>
+    <section class="filters" aria-label="Filtros de produtos">
+      <div class="searchfield"><label for="search">Buscar produto</label><input id="search" type="search" placeholder="Ex.: Ryzen 5, RTX 4060, SSD 1 TB"></div>
+      <div><label for="category">Categoria</label><select id="category"><option value="">Todas</option><option>Processador</option><option>Placa de vídeo</option><option>Memória RAM</option><option>SSD</option><option>Placa-mãe</option><option>Fonte</option></select></div>
+      <div><label for="store">Loja</label><select id="store"><option value="">Todas</option><option>Loja Exemplo A</option><option>Loja Exemplo B</option><option>Loja Exemplo C</option></select></div>
+      <div><label for="maxPrice">Preço máximo (R$)</label><input id="maxPrice" type="number" min="0" step="1" placeholder="Sem limite"></div>
+    </section>
+    <div class="rowline"><h2>Ofertas para comparar</h2><div class="count" id="count" aria-live="polite"></div></div>
+    <section class="products" id="products" aria-live="polite"></section>
+    <section class="how"><h3>O que vem depois?</h3><p>Na próxima etapa vamos trocar os dados fictícios por fontes reais de ofertas, adicionar data da última atualização e, depois, histórico e alertas de preço. Preço final, frete, estoque e vendedor precisam ser verificados antes da compra.</p></section>
+    <footer class="footer">Hardware Radar · versão 0.1 · Feito para funcionar primeiro no celular</footer>
+  </main>
+<script>
+const offers = [
+ {id:1,name:"AMD Ryzen 5 5600",category:"Processador",store:"Loja Exemplo A",price:649.90,icon:"🧠",detail:"6 núcleos · AM4"},
+ {id:2,name:"AMD Ryzen 5 5600",category:"Processador",store:"Loja Exemplo B",price:679.90,icon:"🧠",detail:"6 núcleos · AM4"},
+ {id:3,name:"GeForce RTX 4060 8 GB",category:"Placa de vídeo",store:"Loja Exemplo C",price:1899.90,icon:"🎮",detail:"8 GB · PCIe"},
+ {id:4,name:"Radeon RX 7600 8 GB",category:"Placa de vídeo",store:"Loja Exemplo A",price:1699.90,icon:"🎮",detail:"8 GB · PCIe"},
+ {id:5,name:"Memória DDR4 16 GB 3200 MHz",category:"Memória RAM",store:"Loja Exemplo B",price:189.90,icon:"▤",detail:"1 × 16 GB"},
+ {id:6,name:"Kit DDR4 32 GB (2 × 16 GB)",category:"Memória RAM",store:"Loja Exemplo C",price:329.90,icon:"▤",detail:"3200 MHz"},
+ {id:7,name:"SSD NVMe 1 TB",category:"SSD",store:"Loja Exemplo A",price:349.90,icon:"💾",detail:"M.2 · PCIe 3.0"},
+ {id:8,name:"SSD NVMe 1 TB",category:"SSD",store:"Loja Exemplo C",price:379.90,icon:"💾",detail:"M.2 · PCIe 4.0"},
+ {id:9,name:"Placa-mãe B550M",category:"Placa-mãe",store:"Loja Exemplo B",price:599.90,icon:"🧩",detail:"AM4 · mATX"},
+ {id:10,name:"Fonte 650 W 80 Plus Bronze",category:"Fonte",store:"Loja Exemplo A",price:299.90,icon:"⚡",detail:"650 W"}
+];
+const $ = id => document.getElementById(id);
+const money = n => n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+function render(){
+ const q=$("search").value.trim().toLocaleLowerCase("pt-BR"), cat=$("category").value, store=$("store").value;
+ const max=$("maxPrice").value===""?Infinity:Number($("maxPrice").value);
+ const filtered=offers.filter(p=>(!q || (p.name+" "+p.category+" "+p.detail).toLocaleLowerCase("pt-BR").includes(q))&&(!cat||p.category===cat)&&(!store||p.store===store)&&p.price<=max).sort((a,b)=>a.price-b.price);
+ $("count").textContent=`${filtered.length} ${filtered.length===1?"resultado":"resultados"}`;
+ $("products").innerHTML=filtered.length?filtered.map(p=>`<article class="card">
+  <div class="producttop"><div class="chipicon" aria-hidden="true">${p.icon}</div><div><div class="name">${p.name}</div><div class="category">${p.category} · ${p.detail}</div></div></div>
+  <div class="storeline"><span>${p.store}</span><span>Valor ilustrativo</span></div>
+  <div class="price">${money(p.price)} <small>à vista (exemplo)</small></div>
+  <div class="meta">Frete e estoque não verificados</div>
+  <div class="actions"><button class="btn secondary" onclick="copyName(${p.id})">Copiar produto</button><button class="btn primary" onclick="showInfo()">Detalhes</button></div>
+ </article>`).join(""):`<div class="empty">Nenhum produto encontrado. Tente mudar a busca ou ampliar o preço máximo.</div>`;
+}
+function copyName(id){const p=offers.find(x=>x.id===id);if(navigator.clipboard){navigator.clipboard.writeText(p.name).then(()=>alert("Nome do produto copiado!")).catch(()=>alert(p.name));}else alert(p.name);}
+function showInfo(){alert("Este é um dado fictício da versão de demonstração. A integração com ofertas reais será adicionada na próxima etapa.");}
+["search","category","store","maxPrice"].forEach(id=>$(id).addEventListener(id==="search"||id==="maxPrice"?"input":"change",render));
+render();
+if("serviceWorker" in navigator && location.protocol.startsWith("http")) navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body>
+</html>
